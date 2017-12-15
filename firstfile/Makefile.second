@@ -1,0 +1,23 @@
+.PHONE : all clean dependencies
+
+all : test
+
+test : main.o hello.o goodbye.o
+	gcc -o $@ $^
+
+main.o : main.c statlib.h
+	gcc -c $<
+
+hello.o : hello.c
+	gcc -c $<
+
+goodbye.o : goodbye.c
+	gcc -c $<
+
+clean : 
+	rm -f test dependencies *.o *~
+
+dependencies :
+	gcc -MM *.c >$@
+
+include dependencies

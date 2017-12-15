@@ -1,0 +1,18 @@
+.PHONE : all clean
+
+all : test
+
+test : main.o hello.o goodbye.o
+	gcc -o test main.o hello.o goodbye.o
+
+main.o : main.c statlib.h
+	gcc -c main.c
+
+hello.o : hello.c
+	gcc -c hello.c
+
+goodbye.o : goodbye.c
+	gcc -c goodbye.c
+
+clean :
+	rm -f test *.o *~
